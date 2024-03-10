@@ -1,0 +1,124 @@
+:root {
+    --transition-time: 2s ease-in-out;
+    --default-position: absolute;
+    --default-size: 300px;
+    --default-border-width: 10px;
+    --animation-timing: linear;
+    --top-down: 200px;
+    --top-up: -350px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    padding: 150px 100px;
+}
+
+.left {
+    margin-right: 200px;
+}
+
+.right {
+    margin-left: 200px;
+}
+
+button {
+    display: block;
+    font-size: 15px;
+    padding: 12px 40px;
+    border-radius: 2px;
+    border: 2px solid #000;
+    width: 170px;
+    text-align: center;
+    margin-bottom: 15px;
+    transition: transform .2s ease-in-out, box-shadow .2s ease-in-out; 
+    font-weight: 500;
+}
+
+button:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.monday { background-color: purple; }
+.tuesday { background-color: pink; }
+.wednesday { background-color: blue; }
+.thursday { background-color: green; }
+.friday { background-color: yellow; }
+.saturday { background-color: orange; }
+.sunday { background-color: red; }
+
+.mon-down, .tue-down, .wed-down, .thu-down, .fri-down, .sat-down, .sun-down,
+.mon-up, .tue-up, .wed-up, .thu-up, .fri-up, .sat-up, .sun-up {
+    position: var(--default-position);
+    animation: var(--transition-time);
+    animation-timing-function: var(--animation-timing);
+    height: var(--default-size);
+    width: var(--default-size);
+    background-color: transparent;
+}
+
+.mon-down, .mon-up { 
+    border: var(--default-border-width) solid purple; 
+    --day-color: purple;
+}
+
+.tue-down, .tue-up { 
+    border: var(--default-border-width) solid pink;
+    --day-color: pink;
+}
+
+.wed-down, .wed-up { 
+    border: var(--default-border-width) solid blue; 
+    --day-color: blue;
+}
+
+.thu-down, .thu-up { 
+    border: var(--default-border-width) solid green;
+    --day-color: green; }
+    
+.fri-down, .fri-up { 
+    border: var(--default-border-width) solid yellow;
+    --day-color: yellow;
+}
+
+.sat-down, .sat-up { 
+    border: var(--default-border-width) solid orange;
+    --day-color: orange;
+}
+
+.sun-down, .sun-up { 
+    border: var(--default-border-width) solid red; 
+    --day-color: red;
+}
+
+.mon-down, .tue-down, .wed-down, .thu-down, .fri-down, .sat-down, .sun-down {
+    top: var(--top-down);
+    animation-name: appear;
+}
+
+.mon-up, .tue-up, .wed-up, .thu-up, .fri-up, .sat-up, .sun-up {
+    top: var(--top-up);
+    animation-name: hide;
+}
+
+@keyframes appear {
+    0% { top: var(--top-up); background-color: var(--day-color); }
+    50% { top: 80px; opacity: 80%; background-color: var(--day-color); }
+    100% { top: var(--top-down); background-color: white; }
+}
+
+@keyframes hide {
+    0% { top: var(--top-down); background-color: white; }
+    50% { bottom: 80px; opacity: 80%; background-color: var(--day-color); }
+    100% { top: var(--top-up); background-color: var(--day-color); }
+}
